@@ -1,0 +1,79 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="bit.com.a.dto.CalendarDto"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+
+<%
+List<CalendarDto> list = (ArrayList<CalendarDto>)request.getAttribute("list");
+System.out.println("list1": list.toString());
+%>
+<style>
+
+  #calendar {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+</style>
+
+<div id='calendar' style="position : relative;">
+                 	
+             </div>
+
+
+
+
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+      },
+    
+      locale: "ko",
+      //initialDate: '2020-09-12',
+      navLinks: true, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: true,
+      selectable: true,
+      
+      events: [
+    	  <% 
+    	  		for(int i=0; i < list.size(); i++){
+    	  			CalendarDto dto = list.get(i);
+    	  		
+    	  %>
+    	  {
+    		title: '<%=dto.getTitle() %>',
+    		startdate: '<%=dto.getStartdate() %>',
+    		enddate:'<%=dto.getEnddate() %>'
+    		  
+    	  },
+    	  
+    	  <%
+    	  		}
+    	  %>
+    	  {
+   		   title : 'default',
+   		   startdate : "2021-04-20",
+   		   enddate : "2021-04-20"
+   		  }
+    	  
+       
+      ]
+    });
+
+    calendar.render();
+  });
+
+</script>
+
+

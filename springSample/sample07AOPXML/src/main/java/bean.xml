@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+
+	<!-- xml:
+	
+		<bean id="cls" class="MyClass"/>
+		
+		jsp
+		<jsp:useBean id="cls" class="MyClass"/>
+	 -->
+
+	<!-- AOP Object 생성 -->
+	<bean id="logAop" class="com.aop.LogAop"/>
+	
+	<!-- AOP 설정(자동 호출) - callback -->
+	<aop:config>
+		<aop:aspect id="logger" ref="logAop">	<!-- AOP Object "logAOP"를 ref로 잡아서 참조하라는 명령 -->
+			<aop:pointcut expression="within(com.dto.*)" id="publicM"/><!-- com.dto안의 어떤클래스든 자동호출시켜라 -->
+			
+			<aop:around method="loggerAop" pointcut-ref="publicM"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- xml에서 객체 생성 -->
+	<bean id="myCat" class="com.dto.Cat">
+		<property name="name" value="야옹이"/>
+		<property name="age" value="3"/>
+		<property name="color" value="노랑"/>
+	</bean>
+	
+	
+	
+</beans>

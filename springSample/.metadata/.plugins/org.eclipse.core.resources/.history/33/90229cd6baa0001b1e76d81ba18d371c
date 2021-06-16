@@ -1,0 +1,26 @@
+package bit.com.a.dao.impl;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class MemberDao implements bit.com.a.dao.MemberDao {
+
+	@Autowired			// -> new 	: Dependency Injection
+	SqlSession sqlSession;
+	
+	String namespace = "Member.";
+	@Override
+	public boolean idcheck(String id) {
+		
+		boolean findid;
+		int idchk = sqlSession.selectOne(namespace+"idcheck", id);
+		
+		if (idchk == 0) {
+			findid = true;
+		} else {
+			findid = false;
+		}
+	
+		return findid;
+	}
+}

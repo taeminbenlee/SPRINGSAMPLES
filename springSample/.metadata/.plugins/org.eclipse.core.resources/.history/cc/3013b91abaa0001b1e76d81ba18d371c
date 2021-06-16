@@ -1,0 +1,10 @@
+package bit.com.a.dao;
+
+public class MemberDao {
+
+	public boolean idcheck(String id) {
+		
+		return false;
+	}
+
+}

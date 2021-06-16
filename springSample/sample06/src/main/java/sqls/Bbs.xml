@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Bbs">
+  <select id="bbslist" resultType="bit.com.a.dto.BbsDto">
+  SELECT * FROM BBS ORDER BY REF DESC, STEP ASC
+  </select>
+  <select id="getallbbs" parameterType="bit.com.a.dto.BbsParam" resultType="int">
+  SELECT NVL(COUNT(*), 0) FROM BBS
+  WHERE 1=1
+	<choose>
+		<when test="choice == 'title'">AND TITLE LIKE '%'||#{search}||'%'</when> <!-- 문자열을 합할때 + 대신 || -->
+		<when test="choice == 'content'">AND CONTENT LIKE '%'||#{search}||'%'</when>
+		<when test="choice == 'writer'">AND ID LIKE '%'||#{search}||'%'</when>
+	</choose> <!-- choose when == else if -->	
+  </select>
+  
+  
+  
+  <select id="pagingsearchbbslist" parameterType="bit.com.a.dto.BbsParam" 
+  resultType="bit.com.a.dto.BbsDto">
+  SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, DEL, READCOUNT FROM
+  (SELECT ROW_NUMBER()OVER(ORDER BY REF DESC, STEP ASC) AS RNUM,
+					SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, DEL, READCOUNT 
+					FROM BBS
+	WHERE 1=1
+	<choose>
+		<when test="choice == 'title'">AND TITLE LIKE '%'||#{search}||'%'</when> <!-- 문자열을 합할때 + 대신 || -->
+		<when test="choice == 'content'">AND CONTENT LIKE '%'||#{search}||'%'</when>
+		<when test="choice == 'writer'">AND ID LIKE '%'||#{search}||'%'</when>
+	</choose> <!-- choose when == else if -->		
+	ORDER BY REF DESC, STEP ASC)	
+	WHERE RNUM BETWEEN ${start} AND ${end}
+  </select>
+  
+  <select id="getBbsDetail" parameterType="int" resultType="bit.com.a.dto.BbsDto">
+  SELECT SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, DEL, READCOUNT FROM BBS WHERE SEQ = ${seq}
+  </select>
+  
+  <insert id="add" parameterType="bit.com.a.dto.BbsDto">
+		INSERT INTO BBS( SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, DEL, READCOUNT )
+		VALUES(SEQ_BBS.NEXTVAL, #{ id }, (SELECT NVL(MAX(REF), 0)+1 FROM BBS), 0, 0, 
+		#{ title }, #{ content }, SYSDATE, 0, 0 )
+		
+  </insert>
+	
+	<update id="bbsupdate" parameterType="bit.com.a.dto.BbsDto">
+	UPDATE BBS SET TITLE=#{title}, CONTENT=#{content} WHERE SEQ=${seq}
+	</update>	
+	
+	<update id="bbsdelete" parameterType="int">
+	UPDATE BBS SET DEL=1 WHERE SEQ=${seq}
+	</update>
+	
+	<update id="bbsStepIncrease" parameterType="int">
+	UPDATE BBS SET STEP=STEP+1 WHERE REF=(SELECT REF FROM BBS WHERE SEQ=${seq}) 
+	AND STEP>(SELECT STEP FROM BBS WHERE SEQ=${seq})
+	</update>
+	
+	<insert id="bbsanswer" parameterType="bit.com.a.dto.BbsDto">
+	INSERT INTO BBS( SEQ, ID, REF, STEP, DEPTH, TITLE, CONTENT, WDATE, DEL, READCOUNT )
+	VALUES(SEQ_BBS.NEXTVAL, #{id}, (SELECT REF FROM BBS WHERE SEQ=${seq}), (SELECT STEP FROM BBS WHERE SEQ=${seq}) + 1,
+	(SELECT DEPTH FROM BBS WHERE SEQ=${seq}) + 1, #{title}, #{content}, SYSDATE, 0, 0)
+	
+	</insert>
+	
+	
+	
+	
+  </mapper>
+  
+  
+		
+		
+		
+	

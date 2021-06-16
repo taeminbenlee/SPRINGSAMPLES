@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style type="text/css">
+
+.home {
+	
+    width: 100%;
+    height: 100vh;
+    background-image: url(https://images.unsplash.com/photo-1498550744921-75f79806b8a7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b0f6908fa5e81286213c7211276e6b3d&auto=format&fit=crop&w=1500&q=80);
+    background-position: center top;
+	background-size:cover;
+}
+.center{
+	color: orange;
+}
+</style>
+</head>
+<body>
+<div class="home">
+
+	<div align="center" style="padding-top: 500px;">
+		<input type="button" id="loginM" value="이동">
+	
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#loginM").click(function () {
+		location.href = "login.html";
+	});
+});
+
+</script>
+</body>
+</html>

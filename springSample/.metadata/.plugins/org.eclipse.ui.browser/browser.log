@@ -1,0 +1,26 @@
+
+4월 13, 2021 12:36:30.56 NEW SESSION
+4월 13, 2021 12:36:30.56 [30280:30768:0413/123629.966:ERROR:device_event_log_impl.cc(214)] [12:36:29.966] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+4월 13, 2021 12:38:17.985 [31868:33504:0413/123817.985:ERROR:device_event_log_impl.cc(214)] [12:38:17.985] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+4월 13, 2021 14:34:06.391 [31868:28364:0413/143406.391:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+4월 13, 2021 14:34:27.847 [31868:28364:0413/143427.847:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+4월 13, 2021 14:35:27.209 [31868:28364:0413/143527.209:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+4월 13, 2021 19:25:47.853 [31868:28364:0413/192547.853:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+4월 13, 2021 19:26:14.814 [31868:28364:0413/192614.814:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+4월 13, 2021 19:27:07.617 [31868:28364:0413/192707.616:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+4월 14, 2021 09:11:37.71 [31868:28364:0414/091137.070:ERROR:mcs_client.cc(755)] Received close command, resetting connection.
+4월 14, 2021 18:22:53.236 [31868:28364:0414/182253.236:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+4월 14, 2021 22:07:35.870 [31868:28364:0414/220735.869:ERROR:mcs_client.cc(755)] Received close command, resetting connection.
+
+4월 19, 2021 10:46:01.177 NEW SESSION
+4월 19, 2021 10:46:01.178 [1352:2916:0419/104601.167:ERROR:device_event_log_impl.cc(214)] [10:46:01.167] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+4월 19, 2021 11:16:14.488 [11136:15112:0419/111614.488:ERROR:device_event_log_impl.cc(214)] [11:16:14.488] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+4월 19, 2021 11:18:41.966 [5100:14628:0419/111841.966:ERROR:device_event_log_impl.cc(214)] [11:18:41.966] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+4월 19, 2021 11:27:33.52 [7312:15100:0419/112733.051:ERROR:device_event_log_impl.cc(214)] [11:27:33.051] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+4월 20, 2021 20:00:28.213 [7312:12580:0420/200028.206:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+4월 20, 2021 20:00:38.695 [7312:12580:0420/200038.695:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+
+4월 26, 2021 09:38:02.648 NEW SESSION
+4월 26, 2021 09:38:02.648 [16960:15048:0426/093802.647:ERROR:device_event_log_impl.cc(214)] [09:38:02.647] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+4월 26, 2021 10:46:22.642 [16960:13052:0426/104622.641:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106
+4월 26, 2021 10:46:51.143 [16960:13052:0426/104651.143:ERROR:connection_factory_impl.cc(428)] Failed to connect to MCS endpoint with error -106

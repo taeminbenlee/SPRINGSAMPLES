@@ -1,0 +1,18 @@
+package bit.com.a.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import bit.com.a.dao.MemberDao;
+import bit.com.a.service.MemberService;
+
+public class MemberServiceimpl implements MemberService {
+
+	
+	@Autowired
+	MemberDao memberDao;
+	@Override
+	public boolean idcheck(String id) {
+		return memberDao.idcheck(id);
+	}
+
+}

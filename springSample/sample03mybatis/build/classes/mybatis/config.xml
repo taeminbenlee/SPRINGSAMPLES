@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- XML에서 SqlSessionFactory 빌드하기 -->
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <!-- db정보, 설정 -->
+<configuration>		<!-- 설정 -->
+  <environments default="development">		 <!-- environment엘리먼트는 트랜잭션 관리와 커넥션 풀링을 위한 환경적인 설정 -->
+    <environment id="development">
+      <transactionManager type="JDBC"/>		
+      <dataSource type="POOLED">
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/> <!-- "oracle.jdbc.driver.OracleDriver" -->
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="username" value="hr"/>
+        <property name="password" value="hr"/>
+      </dataSource>
+    </environment>
+  </environments>		<!-- XML설정파일에서 지정하는 마이바티스의 핵심이 되는 설정은 트랜잭션을 
+						제어하기 위한 TransactionManager과 함께 
+						데이터베이스 Connection인스턴스를 가져오기 위한 DataSource 를 포함한다 -->
+  <mappers>
+    <mapper resource="mybatis/MyBatisMapper.xml"/>
+  </mappers>
+  <!-- mappers엘리먼트는 SQL 코드와 매핑 정의를 가지는 XML 파일인 mapper 의 목록을 지정한다. -->
+</configuration>

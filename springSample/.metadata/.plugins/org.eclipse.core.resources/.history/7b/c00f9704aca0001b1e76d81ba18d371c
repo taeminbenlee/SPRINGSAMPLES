@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/core/fmt" %>
+<!-- format태그로 ^ time등을 쪼갤때 사용 포맷으로 encoding에도 사용-->
+<fmt:requestEncoding value="utf-8"/>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<tiles:insertAttribute name="header"/>
+
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>./css/style.css"/>
+<body>
+
+<!-- 헤더 -->
+
+
+
+
+<div id="body_wrap">
+	<div id="main_wrap">
+
+	</div>
+</div>
+
+
+<tiles:insertAttribute name="menu"/>
+
+<tiles:insertAttribute name="content"/>
+
+
+<tiles:insertAttribute name="empty"/>
+
+<!-- 풋터 -->
+
+<tiles:insertAttribute name="footer"/>
+
+
+
+</body>
+</html>

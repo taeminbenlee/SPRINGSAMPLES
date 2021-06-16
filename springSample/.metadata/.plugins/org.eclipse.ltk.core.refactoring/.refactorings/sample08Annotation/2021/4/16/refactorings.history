@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;LogAop.java&apos; to &apos;sample06/src/main/java/bit.com.a.controller&apos;&#x0D;&#x0A;- Original project: &apos;sample08Annotation&apos;&#x0D;&#x0A;- Destination element: &apos;sample06/src/main/java/bit.com.a.controller&apos;&#x0D;&#x0A;- Original element: &apos;com.aop.LogAop.java&apos;" description="Copy compilation unit" destination="=sample06/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;bit.com.a.controller" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.aop{LogAop.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1618538692551" units="1" version="1.0"/>
+</session>

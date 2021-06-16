@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd" xmlns:websocket="http://www.springframework.org/schema/websocket" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans">
+
+
+<websocket:handlers>
+
+<websocket:mapping path="/echo.do" handler="myHandler"/>
+
+
+<websocket:handshake-interceptors>
+
+<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+
+</websocket:handshake-interceptors>
+
+</websocket:handlers>
+
+<bean class="bit.com.a.websocket.WebSocket" id="myHandler"/>
+
+</beans>

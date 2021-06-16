@@ -1,0 +1,11 @@
+1618796476836	Delete element
+1618796853197	Rename resource 'layouts-tiles.jsp'
+1618796929911	Rename resource 'login.tiles.jsp'
+1618800673776	Delete element
+1618800713271	Rename package 'bit.com.a.serviceimpl'
+1618800989019	Rename type 'MemberDao'
+1618813397975	Rename resource 'leftBbsMenu.jsp'
+1618813401149	Move 'leftbbsmenu.jsp' to 'bbs'
+1618814901812	Rename resource 'leftbbsmenu.jsp'
+1618815054260	Rename resource 'button._inc.jsp'
+1618815121054	Rename resource 'bottom._inc.jsp'

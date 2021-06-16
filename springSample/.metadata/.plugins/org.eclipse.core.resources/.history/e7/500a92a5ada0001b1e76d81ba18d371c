@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<!-- 출처: https://epthffh.tistory.com/entry/스프링-타일즈-Spring-Tile-설정해보기 [물고기 개발자의 블로그] -->
+
+
+<tiles-definitions>
+	<definition name="login.tiles" template="/WEB-INF/views/layouts-tiles.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/views/login/menu.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/views/login/content.jsp"/>
+		<put-attribute name="empty" value="/WEB-INF/views/empty.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>
+	</definition>
+	<definition name="bbslist.tiles" extends="login.tiles">
+		<put-attribute name="content" value="/WEB-INF/views/bbs/content.jsp"/>
+	</definition>
+</tiles-definitions>

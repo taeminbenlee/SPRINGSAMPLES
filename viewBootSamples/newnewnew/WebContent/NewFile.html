@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
+    />
+ 
+ <!-- HOSTED -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/2.1.11/jquery.mixitup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.min.js"></script>
+
+ 
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<link rel="stylesheet" type="text/css" href="./css/nav.css">
+</head>
+<body>
+<div class="slider-box">
+  <input id="slider" type="range" min="1" max="199" step="1"/>
+  <div id="range">1000px / 10.0s</div>
+</div>
+
+
+<ul id="scene" data-friction-x="0.03"
+  data-friction-y="0.05">
+  <li class="layer" id="specks" data-depth="0.1"></li>
+  <li class="layer" id="layer-1" data-depth="0.15">
+    <div class="img" id="img-1"></div>
+  </li>
+  <li class="layer" id="layer-2" data-depth="0.25">
+    <div class="img" id="img-2"></div>
+  </li>
+  <li class="layer" id="layer-3" data-depth="0.45">
+    <div class="img" id="img-3"></div>
+  </li>
+</ul>
+
+<script>
+//SLIDER
+var speed = 400;
+
+$(document).ready(function(){
+ var imgCount = $('.img').length
+ $("#slider").on("change", function() {
+   for (var i = 1; i <= imgCount; i++) {
+     speed = 201 - this.value;
+     $('#range').text(`1000px / ${speed/10}s`)
+     speed = speed * (i / 1.25)
+     $('#img-' + i).css({
+       'animation-duration': speed + 's',
+       'animation-name': 'float'
+     });
+   }
+ });
+});                 
+var parallax = $('#scene').parallax();
+
+for (var i = 1; i < 6; i++) {
+  twinkleLoop(i);
+};
+
+function twinkleLoop(i) {
+  var duration = ((Math.random() * 5) + 3)
+
+  duration = duration - ((495 - speed)/100)
+  twinkle(i, duration)
+
+  setTimeout(function() {
+    twinkleLoop(i)
+  }, duration * 1000);
+}
+
+function twinkle(id, duration) {
+  var top = (Math.floor(Math.random() * 85) + 0) + '%';
+  var left = (Math.floor(Math.random() * 85) + 0) + '%';
+
+  $('#speck' + id).remove();
+  $('#specks').append("<div class='speck' id='speck" + id + "'></div>")
+  $('#speck' + id).css({
+    'top': top,
+    'left': left,
+    'animation-duration': duration + 's',
+    'animation-timing-function': 'cubic-bezier(0.250, 0.250, 0.750, 0.750)',
+    'animation-name': 'twinkle',
+  })
+}
+</script>
+<div class="aaa">
+<nav class="nav">
+        <div class="container">
+            <div class="logo">
+                <a href="#">Your Logo</a>
+            </div>
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                    <li class="menulist"><a href="#">About</a></li>
+                    <li class="menulist"><a href="#">Portfolio</a></li>
+                    <li class="menulist"><a href="#">Services</a></li>
+                    <li class="menulist"><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <span class="navTrigger">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+        </div>
+    </nav>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+<script>
+$('.navTrigger').click(function () {
+    $(this).toggleClass('active');
+    console.log("Clicked menu");
+    $("#mainListDiv").toggleClass("show_list");
+    $("#mainListDiv").fadeIn();
+
+});
+
+$(window).scroll(function() {
+    if ($(document).scrollTop() > 50) {
+        $('.nav').addClass('affix');
+        console.log("OK");
+    } else {
+        $('.nav').removeClass('affix');
+    }
+});
+
+</script>
+
+</body>
+</html>

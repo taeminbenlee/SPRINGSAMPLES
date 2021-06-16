@@ -1,0 +1,25 @@
+package bit.com.a.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import bit.com.a.dto.BbsDto;
+
+@Controller
+public class BbsController {
+	
+	
+	@RequestMapping(value="bbslist.do", method = RequestMethod.GET)	
+	public String bbslist() {
+		//logger.info("bbsController bbslist() " + new Date());
+		
+		
+		
+	}
+}

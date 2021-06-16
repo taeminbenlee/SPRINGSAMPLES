@@ -1,0 +1,12 @@
+package bit.com.a.serviceimpl;
+
+import bit.com.a.service.MemberService;
+
+public class MemberServiceimpl implements MemberService {
+
+	@Override
+	public boolean idcheck(String id) {
+		return false;
+	}
+
+}

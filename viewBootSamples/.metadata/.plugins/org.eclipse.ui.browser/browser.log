@@ -1,0 +1,20 @@
+
+4월 29, 2021 19:08:42.48 NEW SESSION
+4월 29, 2021 19:08:42.48 [14312:11004:0429/190842.479:ERROR:device_event_log_impl.cc(214)] [19:08:42.479] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+4월 30, 2021 08:04:58.20 [14312:11004:0430/080458.205:ERROR:device_event_log_impl.cc(214)] [08:04:58.205] USB: usb_service_win.cc:258 Failed to get device driver name: 요소가 없습니다. (0x490)
+
+5월 03, 2021 09:35:42.44 NEW SESSION
+5월 03, 2021 09:35:42.44 [7624:10600:0503/093542.413:ERROR:device_event_log_impl.cc(214)] [09:35:42.414] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+5월 03, 2021 09:36:03.83 [7252:11276:0503/093603.831:ERROR:device_event_log_impl.cc(214)] [09:36:03.831] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+
+5월 03, 2021 20:08:44.74 NEW SESSION
+5월 03, 2021 20:08:44.75 [8588:16968:0503/200844.734:ERROR:device_event_log_impl.cc(214)] [20:08:44.734] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+
+5월 07, 2021 10:34:01.37 NEW SESSION
+5월 07, 2021 10:34:01.38 [10384:6276:0507/103401.351:ERROR:cmd_buffer_helper.cc(141)] ContextResult::kFatalFailure: CommandBufferHelper::AllocateRingBuffer() failed
+5월 07, 2021 10:34:58.59 [13120:17492:0507/103458.595:ERROR:device_event_log_impl.cc(214)] [10:34:58.596] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.
+5월 07, 2021 10:55:04.51 [0507/105504.518:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\bitcamp\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\094d3457-29ef-4fb4-a4b5-6752e7bdc5c3: 지정된 경로를 찾을 수 없습니다. (0x3)
+5월 07, 2021 10:55:04.51 [0507/105504.519:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\bitcamp\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\3f181f44-8113-4bb0-99e0-6dd004995117: 지정된 경로를 찾을 수 없습니다. (0x3)
+
+5월 18, 2021 17:17:43.40 NEW SESSION
+5월 18, 2021 17:17:43.40 [12608:1412:0518/171743.404:ERROR:device_event_log_impl.cc(214)] [17:17:43.404] Bluetooth: bluetooth_adapter_winrt.cc:1072 Getting Default Adapter failed.

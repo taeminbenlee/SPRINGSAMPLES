@@ -1,0 +1,90 @@
+
+<%@page import="bit.com.a.dto.MemberDto"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+      String content = request.getParameter("content");
+      if(request.getParameter("content")==null) {
+            content = (String)request.getAttribute("content");   
+            if((String)request.getAttribute("content") == null){
+               content = request.getParameter("content");
+               if(content == null){
+                   content = "default";
+                   
+                } 
+           }
+      }      
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="./taemin.css">
+</head>
+<body>
+<%
+request.setCharacterEncoding("utf-8");
+Object ologin = request.getSession().getAttribute("login");
+MemberDto mem = null;
+
+if(ologin == null){
+	
+	response.sendRedirect("login.jsp");
+}
+mem = (MemberDto)ologin;
+%>
+<nav class="nav">
+        <div class="container">
+            <div class="logo">
+                <a href="#">Your Logo</a>
+               
+            </div>
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                	<li><a><%=mem.getName() %></a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="bbslist.do">BBS</a></li>
+                    <li><a href="#">PDS</a></li>
+                    <li><a href="#">Calendar</a></li>
+                </ul>
+            </div>
+            <span class="navTrigger">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+        </div>
+    </nav>
+
+    <section class="home">
+    </section>
+    <jsp:include page='<%=content + ".jsp" %>' flush="false"/> 
+
+<!-- Jquery needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+<!-- Function used to shrink nav bar removing paddings and adding black background -->
+    <script>
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 50) {
+                $('.nav').addClass('affix');
+                console.log("OK");
+            } else {
+                $('.nav').removeClass('affix');
+            }
+        });
+        $('.navTrigger').click(function () {
+            $(this).toggleClass('active');
+            console.log("Clicked menu");
+            $("#mainListDiv").toggleClass("show_list");
+            $("#mainListDiv").fadeIn();
+
+        });
+
+    </script>
+    
+</body>
+</html>

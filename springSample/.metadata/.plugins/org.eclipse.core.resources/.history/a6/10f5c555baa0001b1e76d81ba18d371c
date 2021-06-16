@@ -1,0 +1,11 @@
+package bit.com.a.dao.impl;
+
+public class MemberDao implements bit.com.a.dao.MemberDao {
+
+	@Override
+	public boolean idcheck(String id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

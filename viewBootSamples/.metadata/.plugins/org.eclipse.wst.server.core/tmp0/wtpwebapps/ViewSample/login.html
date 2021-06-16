@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" type="text/css" />  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- cookie -->
+<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
+<style type="text/css">
+#leftScr{width:62.1%; height:100%; float: left;}
+#rightScr{width:37.9%; height:100%; float: left}
+body{background: black;}
+</style>
+</head>
+<body>
+
+	<div id=fullScr>
+	
+		<div id=leftScr>
+		
+		<div id="login_wrap" align="center">
+			
+				<form action="" name="frmFrom" id="_frmFrom" method="post">
+					
+					<table class="content_table" style="width: 30%; margin-top: 200px; background-color:rgb(64,64,64);">
+					<colgroup>
+						<col style="width:30%">
+						<col style="width:70%">
+					</colgroup>	
+					
+					<tr>
+						<th style="color: aqua">아이디</th>
+						<td>
+				     		 <input type="text"  id="_id" name="id"><br>
+							<input type="checkbox" id="chk_save_id">ID 저장
+						</td>
+					</tr>
+					<tr>
+						<th style="color: aqua">패스워드</th>
+						<td>&nbsp;<input type="password" id="_pwd" name="pwd"
+									size="20px" style="border: 1px solid #dddddd" placeholder="Password">							
+						</td>
+					</tr>
+					
+					<tr>
+						<td colspan="2" style="height: 20px; text-align: center;">
+						<input type="button" class="btn btn-warning" value="Sign In" id="loginbtn">
+						<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#regiModal">Sign Up</button>
+						</td>
+					</tr>					
+					
+					</table>					
+					
+				</form>				
+						
+			</div>
+
+		</div>
+		
+		
+		<div id=rightScr>
+			<img src="./images/bg-01.jpg" class="rounded float-left" alt="...">
+		</div>
+		
+	</div>
+<div class="modal fade" id="regiModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h1 class="modal-title">회원가입</h1>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        <form action="" method="post" id="_updateForm">
+        <input type="hidden" name="seq" id="_seq" value="">
+        <table class="list_table" style="width: 85%" id="_list_table">
+        <tr>
+        <th>아이디</th>
+        <td>
+          <input type='text' size="20" id="_id_" name="id">
+          <input type="button" id="idcheckbtn" value="아이디체크">
+          </td>
+          </tr>
+        <tr>
+        <th>패스워드</th>
+        <td>
+          <input type='text' size="20" id="_pwd_" name="pwd">
+          </td>
+          </tr>
+         <tr>
+        <th>이름</th>
+        <td>
+          <input type='text' size="20" id="_name_" name="name">
+          </td>
+          </tr>
+          <tr>
+        <th>email</th>
+        <td>
+          <input type='text' size="20" id="_email_" name="email">
+          </td>
+          </tr>
+          	</table>
+         </form>
+        </div>
+      
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="regiAfbtn">회원가입</button>         
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#loginbtn").click(function () {
+		//alert("click");
+		
+		if($("#_id").val().trim() == ""){
+			alert('id를 입력해 주십시오');
+			$("#_id").focus();
+		}
+		else if($("#_pwd").val().trim() == ""){
+			alert('패스워드를 입력해 주십시오');
+			$("#_pwd").focus();
+		}
+		else{
+			$.ajax({
+				url:"http://localhost:3000/loginAf",
+				type:'get',
+				data:{ id: $("#_id").val(), pwd: $("#_pwd").val() },
+				success:function (data) {
+					//alert('success');
+					//alert(data);
+					
+					sessionStorage.setItem("login", JSON.stringify(data)); //세션저장
+					
+					location.href = "bbslist.html";
+					
+				},
+				error:function(){
+					alert('error');
+				}
+				
+			});
+		
+		}
+		
+	});
+	$("#idcheckbtn").click(function () {
+		//alert("click");
+		if($("#_id_").val().trim() == ""){
+			alert('id를 입력해 주십시오');
+		} 
+		else {
+			$.ajax({
+				url:"http://localhost:3000/idcheck",
+				type:'get',
+				data:{ id: $("#_id_").val() },
+				success:function (data) {
+					//alert('success');
+					alert(data);
+						
+					
+				},
+				error:function(){
+					alert('error');
+				}
+				
+			});
+		}
+	});
+	
+	
+	$("#regiAfbtn").click(function () {
+		//alert("click");
+		if($("#_id_").val().trim() == ""){
+			alert('id를 입력해 주십시오');
+		} else if($("#_pwd_").val().trim() == ""){
+			alert('패스워드를 입력해 주십시오');
+			$("#_pwd_").focus();
+		} else if($("#_name_").val().trim() == ""){
+			alert('이름을 입력해 주십시오');
+			$("#_name_").focus();
+		} else if($("#_email_").val().trim() == ""){
+			alert('이메일을 입력해 주십시오');
+			$("#_email_").focus();
+		} else {
+			$.ajax({
+				url:"http://localhost:3000/regiAf",
+				type:'get',
+				data:{ id: $("#_id_").val(), pwd: $("#_pwd_").val(), name: $("#_name_").val(), email: $("#_email_").val()  },
+				success:function (data) {
+					//alert('success');
+					alert(data);
+					
+					
+					
+				},
+				error:function(){
+					alert('error');
+				}
+				
+			});
+		}
+	});
+	
+	
+});
+
+let user_id = $.cookie("user_id");
+if(user_id != null){ //저장된 id가 있음
+	alert("쿠키 있음");
+	$("#_id").val( user_id ); //id="_id"에 user_id를 넣어주어라..
+	$("#chk_save_id").attr("checked", "checked"); //체크박스의 체크를 켜준다.
+	//$("#chk_save_id").prop("chceked", true);
+}
+$("#chk_save_id").click(function () {
+	if( $("#chk_save_id").is(":checked") ){	//checked가 된 상태라면...
+		alert("체크됨");
+		if( $("#_id").val().trim()== ""){
+			alert('id를 입력해 주십시오');
+			$("#chk_save_id").prop("chceked", false);
+		}
+		else{
+			//쿠키를 저장.
+			$.cookie("user_id", $("#_id").val().trim(), { expires:7, path:'./'});
+		}
+	}
+	else {	//checked가 안된 상태라면...
+		$.removeCookie("user_id", { path:'./'}); //익스파이어 기한 설정을 안해주면 쿠키가 없어진다.
+	}
+});
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

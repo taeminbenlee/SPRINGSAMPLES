@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="wizardPage">
+		<list key="groupId">
+			<item value="ddd"/>
+			<item value="personalProject"/>
+			<item value="empManagement"/>
+			<item value="사원관리"/>
+			<item value="sample09tiles"/>
+			<item value="sample08Annotation"/>
+			<item value="sample07AOPXML"/>
+			<item value="sample06"/>
+			<item value="sample05Ajax"/>
+			<item value="bbsSpring"/>
+			<item value="sample04"/>
+			<item value="sample0202"/>
+			<item value="sample02"/>
+			<item value="sample01"/>
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+			<item value="ddd"/>
+			<item value="personalProject"/>
+			<item value="empManagement"/>
+			<item value="사원관리"/>
+			<item value="sample09tiles"/>
+			<item value="sample08Annotation"/>
+			<item value="sample07AOPXML"/>
+			<item value="sample06"/>
+			<item value="sample05Ajax"/>
+			<item value="bbsSpring"/>
+			<item value="sample04"/>
+			<item value="sample0202"/>
+			<item value="sample02"/>
+			<item value="sample01"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

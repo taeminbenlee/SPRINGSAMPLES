@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/table.css">
+</head>
+<body>
+<p id="demo"></p>
+<table class="list_table" style="width: 50%" id="_list_table">
+<colgroup>
+	<col style="width:70px">
+	
+	<col style="width:70px">
+	<col style="width:70px">
+	<col style="width:70px">
+	<col style="width:70px">
+</colgroup>	
+
+<tr>
+	<th>id</th><th>pwd</th><th>name</th><th>email</th><th>auth</th>
+</tr>
+
+
+</table>
+<button type="button">click</button>
+
+<script type="text/javascript">
+$(document).ready(function () {
+	
+	$("button").click(function () {
+		//alert('click');
+		$.ajax({
+			url:"http://localhost:3000/dbtest",
+			type:'get',
+			success:function (list) {
+				alert('success');
+				$.each(list, function (i, val) {
+					let app = "<tr class='list_col'>"
+								+ "<td>" + val.id + "</td>"
+								+ "<td>" + val.pwd + "</td>"
+								+ "<td>" + val.name + "</td>"
+								+ "<td class='_hover_tr' style='text-align:left'>"
+								+ val.email + "</td>"
+								+ "<td>" + val.auth + "</td>"
+								+ "</tr>";
+					
+					$("#_list_table").append(app);	
+				});	
+				
+			},
+			error:function(){
+				alert('error');
+			}
+			
+		});
+	});
+	
+	
+});
+</script>
+</body>
+</html>

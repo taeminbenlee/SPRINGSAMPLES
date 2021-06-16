@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+let urlParams = location.search.split(/[?&]/).slice(1).map(function(paramPair) {
+    return paramPair.split(/=(.+)?/).slice(0, 2);
+}).reduce(function(obj, pairArray) {
+    obj[pairArray[0]] = pairArray[1];
+    return obj;
+}, {});
+</script>
+</head>
+<body>
+<script type="text/javascript">
+let seq = urlParams.seq;
+alert("seq: " + seq);
+
+</script>
+<table class="list_table" style="width: 70%; color: aqua;" id="_list_table">
+				<colgroup>
+					
+					
+					<col style="width:70px">
+					<col style="width:70px">
+					<col style="width:70px">
+					<col style="width:70px">
+				</colgroup>	
+				
+				<tr>
+					<th>번호</th><th>제목</th><th>조회수</th><th>작성자</th>
+				</tr>
+				
+				</table>
+</body>
+</html>

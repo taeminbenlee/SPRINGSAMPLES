@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+  
+ <mapper namespace="Cal">
+
+<select resultType="bit.com.a.dto.CalendarDto" parameterType="String" id="showSchedule">
+SELECT SEQ, ID, TITLE, MYCONTENT, STARTDATE, ENDDATE, WDATE
+FROM EVENTCALENDAR
+WHERE ID = #{id} 
+</select>
+
+<insert parameterType="bit.com.a.dto.CalendarDto" id="addSchedule">
+INSERT INTO EVENTCALENDAR (SEQ, ID, TITLE, MYCONTENT, STARTDATE, ENDDATE, WDATE)
+VALUES (SEQ_CAL.NEXTVAL, #{id}, #{title}, #{content}, #{startdate}, #{enddate}, SYSDATE) 
+</insert>
+
+<update id="updateSchedule" parameterType="bit.com.a.dto.CalendarDto">
+UPDATE EVENTCALENDAR SET TITLE = #{title}, MYCONTENT = #{content}, STARTDATE = #{startdate}, ENDDATE = #{enddate}
+WHERE SEQ = ${seq}
+
+</update>
+
+<delete id="deleteSchedule" parameterType="bit.com.a.dto.CalendarDto">
+DELETE EVENTCALENDAR WHERE SEQ = ${seq}
+</delete>
+
+<select id="searchSchedule" resultType="bit.com.a.dto.CalendarDto" parameterType="bit.com.a.dto.calParam">
+SELECT SEQ, ID, TITLE, MYCONTENT, STARTDATE, ENDDATE, WDATE
+FROM EVENTCALENDAR
+ WHERE 1=1
+		  <if test="choice != null and choice != ''
+		  		and search != null and search != ''">
+		  	  <!-- AND DEL=0 -->		
+			  <if test="choice == 'title'">
+			  		AND TITLE LIKE '%'||#{search}||'%'		  
+			  </if>
+			  <if test="choice == 'content'">
+			  		AND MYCONTENT LIKE '%'||#{search}||'%'			  
+			  </if>
+			
+		  </if>
+</select>
+</mapper>

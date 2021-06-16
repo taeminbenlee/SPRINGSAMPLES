@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 매핑된 SQL 구문 살펴보기 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!--   쿼리문  -->
+<mapper namespace="mybatis.MyBatisMapper">
+<!-- <insert, delete, select, update			id="외부에서 호출할 문자열"
+		parameterType = "object"
+		resultType = "object"> 
+
+			Query #{ 외부로부터 들어 오는 값 } - core tag
+				  ${	숫자	}			  - el tag
+				  
+	</insert, delete, select, update>
+-->
+	<insert id="add" parameterType="dto.MemberDto">
+		INSERT INTO MEMBERDTO(id, pwd, email)
+		VALUES( #{ id }, #{ pwd }, #{ email } )
+		
+	</insert>
+	
+	<update id="updatepwd" parameterType="dto.MemberDto">
+		UPDATE MEMBERDTO SET
+		<set>
+			
+			<if test="pwd != null">pwd=#{pwd}</if>
+			
+		</set>
+		WHERE ID = ${id}
+	</update>
+	
+	<!-- delete 1 -->
+	<delete id="removeObj" parameterType="dto.MemberDto">
+		DELETE FROM MEMBERDTO WHERE ID=#{id}
+	</delete>
+	<!-- delete 2 -->
+	<delete id="remove" parameterType="java.lang.String">
+		DELETE FROM MEMBERDTO WHERE ID=#{str}
+	</delete>
+	
+	<!-- select one -->
+	<select id="find" parameterType="java.lang.String" resultType="dto.MemberDto">
+	SELECT * FROM MEMBERDTO WHERE ID=#{id}
+	</select>
+	
+	<!-- select list -->
+	<select id="allData" resultType="dto.MemberDto">
+	SELECT * FROM MEMBERDTO
+	</select>
+	
+	<!-- bbssearch select by category and keyword(search) -->
+	<select id="bbsSearch" parameterType="dto.BbsParam" resultType="dto.BbsDto">
+	SELECT * FROM BBS 
+	WHERE 1=1
+	<if test="s_category == 'title'">AND TITLE LIKE '%'||#{keyword}||'%'</if> <!-- 문자열을 합할때 + 대신 || -->
+	
+	<if test="s_category == 'content'">AND CONTENT LIKE '%'||#{keyword}||'%'</if>
+	
+	<if test="s_category == 'id'">AND ID LIKE '%'||#{keyword}||'%'</if>
+	
+	</select>
+	<!-- if else문사용 서치 -->
+	<select id="bbsSearch2" parameterType="dto.BbsParam" resultType="dto.BbsDto">
+	SELECT * FROM BBS 
+	WHERE 1=1
+	<choose>
+		<when test="s_category == 'title'">AND TITLE LIKE '%'||#{keyword}||'%'</when> <!-- 문자열을 합할때 + 대신 || -->
+		
+		<when test="s_category == 'content'">AND CONTENT LIKE '%'||#{keyword}||'%'</when>
+		
+		<when test="s_category == 'id'">AND ID LIKE '%'||#{keyword}||'%'</when>
+		<!-- <otherwise></otherwise> 이게 else문이다 --> 
+	</choose> <!-- choose when == else if -->
+	</select>
+	
+</mapper>
+  
+  

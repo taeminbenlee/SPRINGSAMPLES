@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Pds">
+
+<select id="getPdsList" resultType="bit.com.a.dto.PdsDto" >
+SELECT SEQ, ID, TITLE, CONTENT, FILENAME, NEWFILENAME, READCOUNT, DOWNCOUNT, REGDATE
+FROM PDS
+ORDER BY SEQ DESC
+</select>
+
+<insert id="uploadPds" parameterType="bit.com.a.dto.PdsDto">
+INSERT INTO PDS(SEQ, ID, TITLE, CONTENT, FILENAME, NEWFILENAME, READCOUNT, DOWNCOUNT, REGDATE)
+VALUES(SEQ_PDS.NEXTVAL, #{id}, #{title}, #{content}, #{filename}, #{newfilename}, 0, 0, SYSDATE)
+
+</insert>
+
+<update id="readcount" parameterType="int">
+	UPDATE PDS SET READCOUNT=READCOUNT+1 
+				 WHERE SEQ=${seq}
+</update>
+
+  <select id="pdsdetail" parameterType="int" resultType="bit.com.a.dto.PdsDto">
+  SELECT SEQ, ID, TITLE, CONTENT, FILENAME, NEWFILENAME, READCOUNT, DOWNCOUNT, REGDATE FROM PDS WHERE SEQ = ${seq}
+  </select>
+  
+  <delete id="deletePds" parameterType="int">
+  DELETE FROM PDS
+  WHERE SEQ = ${seq}
+  </delete>
+  
+  <update id="downcount" parameterType="int">
+  UPDATE PDS SET DOWNCOUNT=DOWNCOUNT+1
+  WHERE SEQ=${seq}
+  </update>
+  
+  <update id="updateAf" parameterType="bit.com.a.dto.PdsDto">
+  UPDATE PDS SET TITLE=#{title}, CONTENT=#{content}, FILENAME=#{filename}, NEWFILENAME=#{newfilename}, REGDATE=SYSDATE
+  WHERE SEQ=${seq}
+  </update>
+  
+  <!-- 글의 총수 --> 
+<select id="getPdsCount" parameterType="bit.com.a.dto.PdsParam"
+	resultType="java.lang.Integer">
+	SELECT NVL(COUNT(*), 0)
+	FROM PDS
+	WHERE 1=1
+	<if test="choice != null and choice != ''
+	  		and search != null and search != ''">	  	  		
+		  <if test="choice == 'title'">
+		  		AND TITLE LIKE '%'||#{search}||'%'		  
+		  </if>
+		  <if test="choice == 'content'">
+		  		AND CONTENT LIKE '%'||#{search}||'%'			  
+		  </if>
+		  <if test="choice == 'writer'">
+		  		AND ID=#{search}  
+		  </if>	
+	  </if>
+</select>
+  
+ <select id="pdslist" resultType="bit.com.a.dto.PdsDto" parameterType="bit.com.a.dto.PdsParam" >
+ SELECT SEQ, ID, TITLE, CONTENT, FILENAME, NEWFILENAME, READCOUNT, DOWNCOUNT, REGDATE
+ FROM (SELECT ROW_NUMBER()OVER(ORDER BY SEQ DESC) AS RNUM,
+			SEQ, ID, TITLE, CONTENT, FILENAME, NEWFILENAME, READCOUNT, DOWNCOUNT, REGDATE
+		  FROM PDS
+		  WHERE 1=1
+		  <if test="choice != null and choice != ''
+		  		and search != null and search != ''">
+		  	  <!-- AND DEL=0 -->		
+			  <if test="choice == 'title'">
+			  		AND TITLE LIKE '%'||#{search}||'%'		  
+			  </if>
+			  <if test="choice == 'content'">
+			  		AND CONTENT LIKE '%'||#{search}||'%'			  
+			  </if>
+			  <if test="choice == 'writer'">
+			  		AND ID=#{search}  
+			  </if>	
+		  </if>
+		ORDER BY SEQ DESC)
+	WHERE RNUM BETWEEN ${start} AND ${end}
+</select> 
+ 
+
+  
+  
+  
+  
+</mapper>
